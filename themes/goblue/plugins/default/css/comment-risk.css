@@ -1,0 +1,9 @@
+.comment-risk-warning {
+  margin-top: 6px;
+  padding: 6px 10px;
+  background: #fff3cd;
+  border-left: 4px solid #ffb300;
+  color: #856404;
+  font-size: 12px;
+  border-radius: 4px;
+}

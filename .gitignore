@@ -42,3 +42,6 @@ error_log
 !/.scrutinizer.yml
 !/.travis.yml
 !.gitignore
+
+vendors/
+.DS_Store

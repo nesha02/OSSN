@@ -1,4 +1,9 @@
 <?php
+
+//social bot detection changes 1(3-5)
+require_once ossn_route()->www . "configurations/behavior_detection_config.php";
+require_once BG_GUARD_PATH;
+
 /**
  * Open Source Social Network
  *
@@ -10,6 +15,15 @@
  */
 
 $OssnWall = new OssnWall();
+
+//social bot detection changes 2(19-26)
+$user = ossn_loggedin_user();
+
+if(behaviourguard_is_restricted($user->guid, "limit_posting")){
+    ossn_trigger_message("Posting temporarily restricted due to suspicious behaviour.", 'error');
+    redirect(REF);
+    return;
+}
 
 $OssnWall->poster_guid = ossn_loggedin_user()->guid;
 
