@@ -1,6 +1,7 @@
 #do not push settings files
 /configurations/ossn.config.db.php
 /configurations/ossn.config.site.php
+.user.ini
 
 #do not include following files
 /components/*
@@ -41,7 +42,11 @@ error_log
 #do not ignore config files
 !/.scrutinizer.yml
 !/.travis.yml
+<<<<<<< HEAD
 !.gitignore
 
 vendors/
 .DS_Store
+=======
+!.gitignore
+>>>>>>> a54e4120 (Added recommendation system)
