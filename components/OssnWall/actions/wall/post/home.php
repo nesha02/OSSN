@@ -65,11 +65,27 @@ if($OssnWall->Post($post,$friends,$location,$access)){
         $image_path = null;
         $result = null;
 
-        if(isset($OssnWall->OssnFile) &&
-           isset($OssnWall->OssnFile->dir) &&
-           isset($OssnWall->OssnFile->newfilename)){
+        #if(isset($OssnWall->OssnFile) &&
+           #isset($OssnWall->OssnFile->dir) &&
+           #isset($OssnWall->OssnFile->newfilename)){
 
-            $image_path = $OssnWall->OssnFile->dir . $OssnWall->OssnFile->newfilename;
+            #$image_path = $OssnWall->OssnFile->dir . $OssnWall->OssnFile->newfilename;
+        #}
+
+        if(isset($OssnWall->OssnFile) &&
+            isset($OssnWall->OssnFile->dir) &&
+            isset($OssnWall->OssnFile->newfilename)){
+
+             $image_path = rtrim($OssnWall->OssnFile->dir, DIRECTORY_SEPARATOR)
+                        . DIRECTORY_SEPARATOR
+                        . $OssnWall->OssnFile->newfilename;
+
+            // DEBUG (safe — does not break anything)
+            error_log("IMAGE PATH: " . $image_path);
+
+            if(!file_exists($image_path)){
+                error_log("IMAGE NOT FOUND!");
+            }
         }
 
         // IMAGE POST
@@ -81,6 +97,7 @@ if($OssnWall->Post($post,$friends,$location,$access)){
             $result = moderate_comment_api($post);
         }
 
+        error_log("MODERATION RESULT: " . print_r($result, true));
         if(isset($result['ok']) && $result['ok']){
 
             $keywords = "";
